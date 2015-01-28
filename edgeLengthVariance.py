@@ -1,13 +1,8 @@
 import json
 import utils
+from MatrixPrototypes import *
 
-# in the future, will be the actual input graph.
-sampleInput = json.loads(open("sampleInput.json").read())['sample']
-
-# in the future, will be the current attempted solution.
-sampleSolution = json.loads(open("format.json").read())
-
-def getEdgeLength(edge):
+def getEdgeLength(solution, edge):
     # edge is a tuple, taken from input.
     firstX = sampleSolution[edge[0]][0]
     firstY = sampleSolution[edge[0]][1]
@@ -17,18 +12,25 @@ def getEdgeLength(edge):
     return ((firstY - secondY)**2 + (firstX - secondX)**2)**(0.5)
 
 
-def getEdgeVariance(solution):
-    lengths = []
-
-    # go through upper triangular matrix, to visit all edges
-    for i in xrange(0, (len(sampleInput) - 1)):
-        currentRow = sampleInput[i]
-        for j in xrange((i + 1), len(currentRow)):
-            if currentRow[j] == 1:
-                # edge found.
-                edge = (chr(65 + i), chr(65 + j))
-                lengths.append(getEdgeLength(edge))
-
+def getEdgeVariance(solution, matrix):
+    lengths = [getEdgeLength(solution, edge) for edge in matrix.getEdgeIterator() if edge != None]
     return utils.variance(lengths)
 
-print getEdgeVariance(sampleSolution)
+
+
+### TESTING PURPOSES ONLY ###
+# in the future, will be the actual input graph.
+sampleInput = json.loads(open("sampleInput.json").read())['sample']
+
+# in the future, will be the current attempted solution.
+sampleSolution = json.loads(open("format.json").read())
+
+# testing everything here
+myMatrix = AdjacencyMatrix(4)
+myMatrix.addVertices(["A", "B", "C", "D"])
+myMatrix.addEdge("A", "B")
+myMatrix.addEdge("A", "D")
+myMatrix.addEdge("B", "D")
+myMatrix.addEdge("C", "D")
+
+print getEdgeVariance(sampleSolution, myMatrix)
