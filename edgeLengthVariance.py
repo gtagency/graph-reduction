@@ -1,4 +1,5 @@
 import json
+import utils
 
 # in the future, will be the actual input graph.
 sampleInput = json.loads(open("sampleInput.json").read())['sample']
@@ -13,10 +14,11 @@ def getEdgeLength(edge):
     secondX = sampleSolution[edge[1]][0]
     secondY = sampleSolution[edge[1]][1]
 
-    return ((firstY - secondY)**2 + (firstX - secondX))**(0.5)
+    return ((firstY - secondY)**2 + (firstX - secondX)**2)**(0.5)
+
 
 def getEdgeVariance(solution):
-    edgeLengths = []
+    lengths = []
 
     # go through upper triangular matrix, to visit all edges
     for i in xrange(0, (len(sampleInput) - 1)):
@@ -25,8 +27,8 @@ def getEdgeVariance(solution):
             if currentRow[j] == 1:
                 # edge found.
                 edge = (chr(65 + i), chr(65 + j))
-                edgeLengths.append(getEdgeLength(edge))
+                lengths.append(getEdgeLength(edge))
 
-    return edgeLengths
+    return utils.variance(lengths)
 
 print getEdgeVariance(sampleSolution)
