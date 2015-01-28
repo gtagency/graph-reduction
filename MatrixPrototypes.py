@@ -39,3 +39,22 @@ class AdjacencyMatrix:
 
         return self.matrix[i][j]
         
+    def getIterator(self):
+        return MatrixIterator(self)
+        
+
+class MatrixIterator:
+    
+    def __init__(self, matrix):
+        self.matrix = matrix
+        self.i = self.j = 0
+        
+    def getNext(self):
+        if self.j < self.matrx.order:
+            return self.matrix[self.i][self.j]
+        else:
+            self.i += 1
+            self.j = 0
+            return self.matrix[self.i][self.j]
+        
+        
