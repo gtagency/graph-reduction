@@ -78,10 +78,10 @@ class MatrixIterator:
             return self.matrix[self.i][self.j]
 
 # This iterator provides the existent edges of a graph in the form of a tuple
-# It assumes that the vertices are named in uppercase and alphabetical order
 class EdgeIterator:
 
     def __init__(self, matrix):
+        self.vertices = matrix.vertices
         self.matrix = matrix
         self.i = 0
         self.j = 1
@@ -93,12 +93,13 @@ class EdgeIterator:
         if self.j < self.matrix.order:
             self.j += 1
             if self.matrix[self.i][self.j - 1] != None:
-                return (chr(65 + self.i), chr(65 + self.j - 1))
+                # return (chr(65 + self.i), chr(65 + self.j - 1))
+                return (self.vertices[self.i], self.vertices[self.j - 1])
         elif self.i < self.matrix.order - 1:
             self.i += 1
             self.j = self.i + 1
             if self.j < self.matrix.order and self.matrix[self.i][self.j] != None:
                 self.j += 1
-                return (chr(65 + self.i), chr(65 + self.j - 1))
+                return (self.vertices[self.i], self.vertices[self.j - 1])
         else:
             raise StopIteration
