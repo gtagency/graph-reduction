@@ -3,9 +3,8 @@ import math
 import statistics
 
 #the smaller the result, the more evenly distributed the angles of the edges on the nodes are.
-#expects graph edges to be a list of tuples, and vertices to be a JSON obj containing a dict of coords
+#expects graph edges to be a list of tuples, and vertices to be a dict of coords
 def checkDistributedEdges(tupleList, vertices):
-    vertices = json.loads(vertices)
     totalVariance = 0.0
     for key, coords in vertices.items():
         edges = []
@@ -46,14 +45,7 @@ def checkDistributedEdges(tupleList, vertices):
         
     return totalVariance
 
-#test code
 
-#testVertices = {
-#    "A": [15, 15],
-#    "B": [20, 10],
-#    "C": [10, 10],
-#    "D": [15, 25]
-#}
-#testVertices = json.dumps(testVertices)
-#testTuples = [("A", "C"), ("B", "C"), ("D", "A"), ("B", "D")]
-#print(checkDistributedEdges(testTuples, testVertices))
+graph = json.loads(open("format.json").read())
+print (checkDistributedEdges([("A", "B"), ("A", "C"), ("A", "D"), ("B", "C"), ("B", "D"), ("C", "D")], graph))
+
