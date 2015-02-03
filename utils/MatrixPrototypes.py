@@ -8,6 +8,12 @@ class AdjacencyMatrix:
         self.matrix = [[None for i in range(vertexCount)] for i in range(vertexCount)]
         self.vertices = []
 
+    # Get vertices
+    # Returns:
+    #   list of vertices
+    def vertices(self):
+        return self.vertices
+
     # Adds vertices to the vertex list
     # newVertices:list of objects
     def addVertices(self, newVertices):
