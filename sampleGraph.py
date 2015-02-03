@@ -1,3 +1,5 @@
+from utils.MatrixPrototypes import *
+
 matrix = AdjacencyMatrix(26)
 matrix.addVertices(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
 matrix.addEdge("A", "J")

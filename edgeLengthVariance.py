@@ -1,6 +1,6 @@
 import json
 import utils.utils
-from MatrixPrototypes import *
+from utils.MatrixPrototypes import *
 
 def getEdgeLength(solution, edge):
     # edge is a tuple, taken from input.
