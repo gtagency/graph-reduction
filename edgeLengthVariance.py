@@ -2,13 +2,14 @@ import json
 from utils import utils
 from utils.MatrixPrototypes import *
 import sampleGraph
+import randomPermutation
 
 def getEdgeLength(solution, edge):
     # edge is a tuple, taken from input.
-    firstX = sampleSolution[edge[0]][0]
-    firstY = sampleSolution[edge[0]][1]
-    secondX = sampleSolution[edge[1]][0]
-    secondY = sampleSolution[edge[1]][1]
+    firstX = solution[edge[0]][0]
+    firstY = solution[edge[0]][1]
+    secondX = solution[edge[1]][0]
+    secondY = solution[edge[1]][1]
 
     return ((firstY - secondY)**2 + (firstX - secondX)**2)**(0.5)
 
@@ -24,7 +25,7 @@ def getEdgeVariance(solution, matrix):
 # sampleInput = json.loads(open("sampleInput.json").read())['sample']
 #
 # # in the future, will be the current attempted solution.
-sampleSolution = json.loads(open("format.json").read())
+# sampleSolution = json.loads(open("format.json").read())
 #
 # # testing everything here
 # myMatrix = AdjacencyMatrix(4)
@@ -34,4 +35,4 @@ sampleSolution = json.loads(open("format.json").read())
 # myMatrix.addEdge("B", "D")
 # myMatrix.addEdge("C", "D")
 #
-print getEdgeVariance(sampleSolution, matrix)
+print getEdgeVariance(randomPermutation.points, sampleGraph.matrix)
