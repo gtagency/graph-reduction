@@ -1,5 +1,5 @@
 import json
-import utils
+import utils.utils
 from MatrixPrototypes import *
 
 def getEdgeLength(solution, edge):
