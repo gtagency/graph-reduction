@@ -17,22 +17,3 @@ def getEdgeLength(solution, edge):
 def getEdgeVariance(solution, matrix):
     lengths = [getEdgeLength(solution, edge) for edge in matrix.getEdgeIterator() if edge != None]
     return utils.variance(lengths)
-
-
-
-# ### TESTING PURPOSES ONLY ###
-# # in the future, will be the actual input graph.
-# sampleInput = json.loads(open("sampleInput.json").read())['sample']
-#
-# # in the future, will be the current attempted solution.
-# sampleSolution = json.loads(open("format.json").read())
-#
-# # testing everything here
-# myMatrix = AdjacencyMatrix(4)
-# myMatrix.addVertices(["A", "B", "C", "D"])
-# myMatrix.addEdge("A", "B")
-# myMatrix.addEdge("A", "D")
-# myMatrix.addEdge("B", "D")
-# myMatrix.addEdge("C", "D")
-#
-print getEdgeVariance(randomPermutation.points, sampleGraph.matrix)
