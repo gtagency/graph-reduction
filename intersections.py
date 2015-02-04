@@ -4,8 +4,7 @@ import randomPermutation
 def intersections(graph, coords):
     lines = []
     int_points = []
-    lines = [(coords[edge[0]], coords[edge[1]]) for edge in
-        graph.getEdgeIterator() if edge is not None]
+    lines = [(coords[u], coords[v]) for u, v in graph.getEdgeIterator()]
     i = 0
     for l in lines:
         for l2 in lines:
