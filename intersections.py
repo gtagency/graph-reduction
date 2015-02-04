@@ -1,10 +1,13 @@
-import sampleGraph
+from __future__ import division
 import randomPermutation
+import sampleGraph
 
-def intersections(graph, coords):
-    lines = []
-    int_points = []
+def score(graph, coords):
     lines = [(coords[u], coords[v]) for u, v in graph.getEdgeIterator()]
+    return 1 - intersections(lines) / max_intersections(len(lines))
+
+def intersections(lines):
+    int_points = []
     i = 0
     for l in lines:
         for l2 in lines:
@@ -18,7 +21,7 @@ def intersections(graph, coords):
 def intersect(l, k):
     a,c = slopeIntForm(l)
     b,d = slopeIntForm(k)
-    if a is b or c is None or d is None: return (False, None)
+    if a == b or c is None or d is None: return (False, None)
     p = [(d-c)/(a-b), (a*d - b*c)/(a-b)]
     for q in (l+ k):
         if dist(p, q) < 2: return (False, None)
@@ -33,4 +36,9 @@ def slopeIntForm(line):
 def dist(p1, p2):
     return ((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)**0.5
 
-print(intersections(sampleGraph.matrix, randomPermutation.points))
+def max_intersections(k):
+    if k <= 0: return 0
+    elif k is 1: return 0
+    else: return k - 1 + max_intersections(k - 1)
+
+print(score(sampleGraph.matrix, randomPermutation.points))
