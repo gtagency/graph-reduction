@@ -1,12 +1,13 @@
-import json
+import sampleGraph
+import randomPermutation
 
-def intersections(edges, graph):
+def intersections(graph, coords):
     lines = []
     int_points = []
-    for u,v in edges:
-        lines.append((graph[u], graph[v]))
+    lines = [(coords[edge[0]], coords[edge[1]]) for edge in
+        graph.getEdgeIterator() if edge is not None]
     i = 0
-    for l1 in lines:
+    for l in lines:
         for l2 in lines:
             if l is l2: pass
             r, p = intersect(l, l2)
@@ -33,5 +34,4 @@ def slopeIntForm(line):
 def dist(p1, p2):
     return ((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)**0.5
 
-graph = json.loads(open("format.json").read())
-print intersections([("A", "B"), ("A", "C"), ("A", "D"), ("B", "C"), ("B", "D"), ("C", "D")], graph)
+print(intersections(sampleGraph.matrix, randomPermutation.points))
