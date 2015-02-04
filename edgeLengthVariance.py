@@ -1,4 +1,3 @@
-import json
 from utils import utils
 from utils.MatrixPrototypes import *
 import sampleGraph
@@ -15,5 +14,5 @@ def getEdgeLength(solution, edge):
 
 
 def getEdgeVariance(solution, matrix):
-    lengths = [getEdgeLength(solution, edge) for edge in matrix.getEdgeIterator() if edge != None]
+    lengths = [getEdgeLength(solution, edge) for edge in matrix.getEdgeIterator()]
     return utils.variance(lengths)
