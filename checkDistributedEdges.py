@@ -1,7 +1,6 @@
 import math
 from utils import utils
 from utils.MatrixPrototypes import *
-import sampleGraph
 
 #the smaller the result, the more evenly distributed the angles
 #of the edges on the nodes are.
@@ -42,12 +41,12 @@ def checkDistributedEdges(matrix, vertices):
                 angleDist.append(angles[i] - angles[i - 1])
                 i = i - 1
             angleDist.append((2 * math.pi) - (angles[len(angles) - 1] - angles[0]))
-            
+
             #calc variance
             totalVariance += utils.variance(angleDist)
 
     return 1.0 / (totalVariance + 1.0)
 
-#Test statement, need to import randomPermutation to run
+#Test statement, need to import randomPermutation, sampleGraph to run
 #
 #print (checkDistributedEdges(sampleGraph.matrix, randomPermutation.points))
