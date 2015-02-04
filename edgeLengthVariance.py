@@ -13,6 +13,6 @@ def getEdgeLength(solution, edge):
     return ((firstY - secondY)**2 + (firstX - secondX)**2)**(0.5)
 
 
-def getEdgeVariance(solution, matrix):
+def getEdgeVariance(solution, matrix, diagonal):
     lengths = [getEdgeLength(solution, edge) for edge in matrix.getEdgeIterator()]
-    return utils.variance(lengths)
+    return utils.variance(lengths) / utils.variance([0, diagonal])
