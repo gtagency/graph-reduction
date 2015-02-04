@@ -8,6 +8,8 @@ import sampleGraph
 
 #expects matrix to be a Adjacency Matrix object, and vertices to be a dict of
 #coords (coords stored as tuples, keys have same name as vertices)
+#
+# returns a num between 0 and 1 -> 1 is most fit, 0 is least fit
 def checkDistributedEdges(matrix, vertices):
     tupleList = []
     for edge in matrix.getEdgeIterator():
@@ -49,8 +51,7 @@ def checkDistributedEdges(matrix, vertices):
             #for angle in angleDist:
             #    variance += ((angle - mean) ** 2) / num
             totalVariance += utils.variance(angleDist)
-
-    return totalVariance
+    return 1.0 / (totalVariance + 1.0)
 
 #Test statement, need to import randomPermutation to run
 #
