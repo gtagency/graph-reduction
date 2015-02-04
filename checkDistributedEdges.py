@@ -42,15 +42,10 @@ def checkDistributedEdges(matrix, vertices):
                 angleDist.append(angles[i] - angles[i - 1])
                 i = i - 1
             angleDist.append((2 * math.pi) - (angles[len(angles) - 1] - angles[0]))
-
+            
             #calc variance
-
-            #num = len(angleDist)
-            #mean = (2 * math.pi) / num
-            #variance = 0
-            #for angle in angleDist:
-            #    variance += ((angle - mean) ** 2) / num
             totalVariance += utils.variance(angleDist)
+
     return 1.0 / (totalVariance + 1.0)
 
 #Test statement, need to import randomPermutation to run
