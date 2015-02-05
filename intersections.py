@@ -25,7 +25,7 @@ def intersect(l, k):
     p = [(d-c)/(a-b), (a*d - b*c)/(a-b)]
     for q in (l+ k):
         if dist(p, q) < 2: return (False, None)
-    
+
     return (True, p)
 
 def slopeIntForm(line):
@@ -41,4 +41,5 @@ def max_intersections(k):
     elif k is 1: return 0
     else: return k - 1 + max_intersections(k - 1)
 
-print(score(sampleGraph.matrix, randomPermutation.points))
+if __name__=='__main__':
+    print(score(sampleGraph.matrix, randomPermutation.points))

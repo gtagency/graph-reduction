@@ -1,4 +1,5 @@
 import randomPermutation
+import math
 
 def area(coords):
     xMin, yMin = coords['A']
@@ -7,13 +8,14 @@ def area(coords):
     for value in coords.values():
         x, y = value
         if x > xMax:
-            xMax = x 
+            xMax = x
         if x <xMin:
-            xMin = x 
+            xMin = x
         if y > yMax:
-            yMax = y 
+            yMax = y
         if y < yMin:
-            yMin = y 
-    return (xMax-xMin)*(yMax-yMin)
+            yMin = y
+    return (xMax-xMin)*(yMax-yMin), math.sqrt((xMax-xMin)**2 + (yMax-yMin)**2)
 
-print(area(randomPermutation.points))
+if __name__=='__main__':
+    print(area(randomPermutation.points))
