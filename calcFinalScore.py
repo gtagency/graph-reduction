@@ -1,10 +1,11 @@
 from utils.MatrixPrototypes import *
-import area
-import edgeLengthVariance
-from checkDistributedEdges import *
-import intersections
+from evals import *
+#import area
+#import edgeLengthVariance
+#from checkDistributedEdges import *
+#import intersections
 
-def calcFinalScore(solution, matrix):
+def calcFinalScore(matrix, solution):
     # still need to implement the "check if nodes are too close" test
 
     # each score is weighted in order of importance
@@ -13,7 +14,7 @@ def calcFinalScore(solution, matrix):
     areaScore, diagonal = area.area(solution)
     areaScore = 100 * (len(solution) / areaScore)
     edgeVarianceScore = 30 * edgeLengthVariance.getEdgeVariance(solution, matrix, diagonal)
-    distEdgeScore = 15 * checkDistributedEdges(matrix, solution)
+    distEdgeScore = 15 * checkDistributedEdges.checkDistributedEdges(matrix, solution)
     intersectionsScore = 55 * intersections.score(matrix, solution)
 
     return areaScore + edgeVarianceScore + distEdgeScore + intersectionsScore
@@ -21,4 +22,4 @@ def calcFinalScore(solution, matrix):
 if __name__=='__main__':
     import sampleGraph
     import randomPermutation
-    print(calcFinalScore(randomPermutation.points, sampleGraph.matrix))
+    print(calcFinalScore(sampleGraph.matrix, randomPermutation.points))

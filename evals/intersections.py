@@ -41,5 +41,6 @@ def max_intersections(k):
     elif k is 1: return 0
     else: return k - 1 + max_intersections(k - 1)
 
-if __name__=='__main__':
-    print(score(sampleGraph.matrix, randomPermutation.points))
+#broken because of packages
+#if __name__=='__main__':
+#    print(score(sampleGraph.matrix, randomPermutation.points))

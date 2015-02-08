@@ -17,5 +17,7 @@ def area(coords):
             yMin = y
     return (xMax-xMin)*(yMax-yMin), math.sqrt((xMax-xMin)**2 + (yMax-yMin)**2)
 
-if __name__=='__main__':
-    print(area(randomPermutation.points))
+
+#broken because of packages
+#if __name__=='__main__':
+#    print(area(randomPermutation.points))
