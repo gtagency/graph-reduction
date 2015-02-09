@@ -2,8 +2,9 @@ from calcFinalScore import *
 from utils.MatrixPrototypes import *
 
 # So, good news is that this very basic attempt is finished.
-# I'd like to run it with more iterations, but it's getting to be too much
-# for my laptop. Current highscore: 31.986555539935036 (after 329 iterations)
+# I'd like to run it with more iterations, but there are too many local maxima.
+# it usually hits a local max after about 250 iterations.
+# Current highscore: 32.656044771142 (after 320 iterations)
 # (the highest i ever got randomly was 19).
 
 def basicHillClimb(matrix, solution, maxAttempts=1000):
