@@ -2,48 +2,46 @@ from calcFinalScore import *
 from utils.MatrixPrototypes import *
 
 # So, good news is that this very basic attempt is finished.
-# Bad news is that there are so many local maxima that this doesn't fare much
-# better than getting a random permutation. Back of the envelope estimate, it
-# returns solutions with score about 3-4 points higher on average than random
-# permutation does on average. Although that may be because the current scoring
-# system is very strict. Current high score: 15.0061484094
+# I'd like to run it with more iterations, but it's getting to be too much
+# for my laptop. Current highscore: 31.986555539935036 (after 329 iterations)
+# (the highest i ever got randomly was 19).
 
-def basicHillClimb(matrix, solution):
+def basicHillClimb(matrix, solution, maxAttempts=1000):
     score = calcFinalScore(matrix, solution)
     tries = 0
-    while(tries < 10000000):
-        newSol = hillClimbHelper(matrix, solution, score)
-        if(newSol == solution):
-            tries = 1000000000
-        solution = newSol
-        score = calcFinalScore(matrix, solution)
+    peak = False
+    while((tries < maxAttempts) and (peak == False)):
+        newScore = hillClimbHelper(matrix, solution, score)
+        if(newScore == score):
+            peak = True
+        score = newScore
         tries += 1
-    return solution, score
+    return solution, score, tries
 
 
 def hillClimbHelper(matrix, solution, score):
     for key in solution.keys():
         solution[key] = (solution[key][0] + 1, solution[key][1])
         if(calcFinalScore(matrix, solution) > score):
-            return solution
+            return calcFinalScore(matrix, solution)
         else:
             solution[key] = (solution[key][0] - 2, solution[key][1])
             if(calcFinalScore(matrix, solution) > score):
-                return solution
+                return calcFinalScore(matrix, solution)
             else:
                 solution[key] = (solution[key][0] + 1, solution[key][1])
         solution[key] = (solution[key][0], solution[key][1] + 1)
         if(calcFinalScore(matrix, solution) > score):
-            return solution
+            return calcFinalScore(matrix, solution)
         else:
             solution[key] = (solution[key][0], solution[key][1] - 2)
             if(calcFinalScore(matrix, solution) > score):
-                return solution
+                return calcFinalScore(matrix, solution)
             else:
                 solution[key] = (solution[key][0], solution[key][1] + 1)
-    return solution
+    return calcFinalScore(matrix, solution)
 
 if __name__=='__main__':
     import sampleGraph
     import randomPermutation
-    print(basicHillClimb(sampleGraph.matrix, randomPermutation.points)[1])
+    print(basicHillClimb(sampleGraph.matrix, randomPermutation.points)[1:3])
