@@ -11,6 +11,8 @@ def calcFinalScore(matrix, solution):
     # each score is weighted in order of importance
     # feel free to change weights, this is just a rough estimate of how
     # important different scores are
+    if(checkOverlappingPoints.checkOverlappingPoints(matrix, solution) == False):
+        return 0.0;
     areaScore, diagonal = area.area(solution)
     areaScore = 100 * (len(solution) / areaScore)
     edgeVarianceScore = 30 * edgeLengthVariance.getEdgeVariance(solution, matrix, diagonal)

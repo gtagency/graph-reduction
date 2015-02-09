@@ -1,1 +1,1 @@
-__all__ = ["area", "checkDistributedEdges", "edgeLengthVariance", "intersections"]
+__all__ = ["area", "checkDistributedEdges", "edgeLengthVariance", "intersections", "checkOverlappingPoints"]

@@ -4,10 +4,10 @@ from utils.MatrixPrototypes import *
 # So, good news is that this very basic attempt is finished.
 # I'd like to run it with more iterations, but there are too many local maxima.
 # it usually hits a local max after about 250 iterations.
-# Current highscore: 32.656044771142 (after 320 iterations)
+# Current highscore: 38.585079763757406 (after 362 iterations)
 # (the highest i ever got randomly was 19).
 
-def basicHillClimb(matrix, solution, maxAttempts=1000):
+def basicHillClimb(matrix, solution, maxAttempts=2000):
     score = calcFinalScore(matrix, solution)
     tries = 0
     peak = False
@@ -23,21 +23,25 @@ def basicHillClimb(matrix, solution, maxAttempts=1000):
 def hillClimbHelper(matrix, solution, score):
     for key in solution.keys():
         solution[key] = (solution[key][0] + 1, solution[key][1])
-        if(calcFinalScore(matrix, solution) > score):
-            return calcFinalScore(matrix, solution)
+        newScore = calcFinalScore(matrix, solution)
+        if(newScore > score):
+            return newScore
         else:
             solution[key] = (solution[key][0] - 2, solution[key][1])
-            if(calcFinalScore(matrix, solution) > score):
-                return calcFinalScore(matrix, solution)
+            newScore = calcFinalScore(matrix, solution)
+            if(newScore > score):
+                return newScore
             else:
                 solution[key] = (solution[key][0] + 1, solution[key][1])
         solution[key] = (solution[key][0], solution[key][1] + 1)
-        if(calcFinalScore(matrix, solution) > score):
-            return calcFinalScore(matrix, solution)
+        newScore = calcFinalScore(matrix, solution)
+        if(newScore > score):
+            return newScore
         else:
             solution[key] = (solution[key][0], solution[key][1] - 2)
-            if(calcFinalScore(matrix, solution) > score):
-                return calcFinalScore(matrix, solution)
+            newScore = calcFinalScore(matrix, solution)
+            if(newScore > score):
+                return newScore
             else:
                 solution[key] = (solution[key][0], solution[key][1] + 1)
     return calcFinalScore(matrix, solution)
