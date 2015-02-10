@@ -19,6 +19,23 @@ def basicHillClimb(matrix, solution, maxAttempts=2000):
         tries += 1
     return solution, score, tries
 
+def getSuccessors(solution):
+    successors = []
+    
+    for key in solution.keys():
+        successorOne = solution
+        successorTwo = solution
+        successorThree = solution
+        successorFour = solution
+
+        successorOne[key] = (successorOne[key] + 1, successorOne[key])
+        successorTwo[key] = (successorTwo[key] - 1, successorTwo[key])
+        successorThree[key] = (successorThree[key], successorThree[key] + 1)
+        successorFour[key] = (successorFour[key], successorFour[key] - 1)
+
+        successors.extend([successorOne, successorTwo, successorThree, successorFour])
+
+    return successors
 
 def hillClimbHelper(matrix, solution, score):
     for key in solution.keys():
