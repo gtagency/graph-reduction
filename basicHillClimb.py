@@ -21,17 +21,17 @@ def basicHillClimb(matrix, solution, maxAttempts=2000):
 
 def getSuccessors(solution):
     successors = []
-    
+
     for key in solution.keys():
         successorOne = solution
         successorTwo = solution
         successorThree = solution
         successorFour = solution
 
-        successorOne[key] = (successorOne[key] + 1, successorOne[key])
-        successorTwo[key] = (successorTwo[key] - 1, successorTwo[key])
-        successorThree[key] = (successorThree[key], successorThree[key] + 1)
-        successorFour[key] = (successorFour[key], successorFour[key] - 1)
+        successorOne[key] = (successorOne[key][0] + 1, successorOne[key][1])
+        successorTwo[key] = (successorTwo[key][0] - 1, successorTwo[key][1])
+        successorThree[key] = (successorThree[key][0], successorThree[key][1] + 1)
+        successorFour[key] = (successorFour[key][0], successorFour[key][1] - 1)
 
         successors.extend([successorOne, successorTwo, successorThree, successorFour])
 
