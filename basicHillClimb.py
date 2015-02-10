@@ -1,5 +1,7 @@
 from calcFinalScore import *
 from utils.MatrixPrototypes import *
+import random
+import math
 
 # So, good news is that this very basic attempt is finished.
 # I'd like to run it with more iterations, but there are too many local maxima.
@@ -12,6 +14,8 @@ def basicHillClimb(matrix, solution, maxAttempts=2000):
     tries = 0
     peak = False
     while((tries < maxAttempts) and (peak == False)):
+#        if(tries % 100 == 0):
+#            print(score)
         newScore = hillClimbHelper(matrix, solution, score)
         if(newScore == score):
             peak = True
@@ -63,7 +67,30 @@ def hillClimbHelper(matrix, solution, score):
                 solution[key] = (solution[key][0], solution[key][1] + 1)
     return calcFinalScore(matrix, solution)
 
+def simulatedAnnealing(matrix, solution, schedule=expSchedule, maxTries=10000):
+    current = solution
+    for t in range(maxTries):
+        T = schedule(t)
+        if (t % 10 == 0):
+            print("Time: " + str(t) + ", Temp: " + str(T))
+        if T == 0:
+            return current
+        nextState = random.choice(getSuccessors(solution))
+        deltaE = calcFinalScore(matrix, nextState) - calcFinalScore(matrix, current)
+        if deltaE > 0:
+            current = nextState
+        else:
+            if random.random() < math.exp(deltaE / T):
+                current = nextState
+    return current
+
+
+def expSchedule(t):
+    T0 = 1.0
+    alpha = 0.9
+    return T0 * (alpha ** t)
+
 if __name__=='__main__':
     import sampleGraph
     import randomPermutation
-    print(basicHillClimb(sampleGraph.matrix, randomPermutation.points)[1:3])
+    print(simulatedAnnealing(sampleGraph.matrix, randomPermutation.points))
