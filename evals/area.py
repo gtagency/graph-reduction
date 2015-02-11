@@ -16,8 +16,7 @@ def area(coords):
         if y < yMin:
             yMin = y
 
-    maxArea = 10*len(coords.values())
-    maxArea = 300 ### DEBUG ONLY
+    maxArea = 10*len(coords.values()) ** 2
     areaScore = 1 - float((xMax-xMin)*(yMax-yMin)) / maxArea
     diagonal = math.sqrt((xMax-xMin)**2 + (yMax-yMin)**2)
 
