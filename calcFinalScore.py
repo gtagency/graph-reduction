@@ -17,11 +17,11 @@ def calcFinalScore(matrix, solution):
     areaScore, diagonal = area.area(solution)
 #    areaScore = 0 * (len(solution) / areaScore)
 #    areaScore = 100 * (length / areaScore)
-    edgeVarianceScore = 30 * length * edgeLengthVariance.getEdgeVariance(solution, matrix, diagonal)
-    distEdgeScore = 15 * length * checkDistributedEdges.checkDistributedEdges(matrix, solution)
-    intersectionsScore = 55 * length * intersections.score(matrix, solution)
+    edgeVarianceScore = 80 * length * edgeLengthVariance.getEdgeVariance(solution, matrix, diagonal)
+    distEdgeScore = 25 * length * checkDistributedEdges.checkDistributedEdges(matrix, solution)
+    intersectionsScore = 500 * length * intersections.score(matrix, solution)
 
-    return areaScore + edgeVarianceScore + distEdgeScore + intersectionsScore
+    return (-0.2 * areaScore) + edgeVarianceScore + distEdgeScore + intersectionsScore
 
 if __name__=='__main__':
     import sampleGraph

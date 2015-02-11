@@ -1,3 +1,4 @@
+from __future__ import division
 # returns aritmetic mean of a list of numbers
 def avgMean(data):
     return sum(data) / len(data)
