@@ -1,6 +1,6 @@
-import matplotlib.pyplot as plt
+from matplotlib.pyplot import show, ion
 import networkx as nx
 
-def show(matrix, points):
+def display(matrix, points):
    nx.draw(matrix.graph(), points)
-   plt.show()
+   show()

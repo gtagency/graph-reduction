@@ -14,7 +14,7 @@ def calcFinalScore(matrix, solution):
     if(checkOverlappingPoints.checkOverlappingPoints(matrix, solution) == False):
         return 0.0;
     areaScore, diagonal = area.area(solution)
-    areaScore = 100 * (len(solution) / areaScore)
+    areaScore = 0 * (len(solution) / areaScore)
     edgeVarianceScore = 30 * edgeLengthVariance.getEdgeVariance(solution, matrix, diagonal)
     distEdgeScore = 15 * checkDistributedEdges.checkDistributedEdges(matrix, solution)
     intersectionsScore = 55 * intersections.score(matrix, solution)

@@ -2,6 +2,7 @@ from calcFinalScore import *
 from utils.MatrixPrototypes import *
 import random
 import math
+import viz
 
 # So, good news is that this very basic attempt is finished.
 # I'd like to run it with more iterations, but there are too many local maxima.
@@ -14,13 +15,15 @@ def basicHillClimb(matrix, solution, maxAttempts=2000):
     tries = 0
     peak = False
     while((tries < maxAttempts) and (peak == False)):
-#        if(tries % 100 == 0):
-#            print(score)
+        if(tries % 200 == 0):
+            print score
+#            viz.display(matrix, solution)
         newScore = hillClimbHelper(matrix, solution, score)
         if(newScore == score):
             peak = True
         score = newScore
         tries += 1
+    viz.display(matrix, solution)
     return solution, score, tries
 
 def getSuccessors(solution):
@@ -67,13 +70,21 @@ def hillClimbHelper(matrix, solution, score):
                 solution[key] = (solution[key][0], solution[key][1] + 1)
     return calcFinalScore(matrix, solution)
 
+def expSchedule(t):
+    T0 = 1.0
+    alpha = 0.9
+    return T0 * (alpha ** t)
+
+
 def simulatedAnnealing(matrix, solution, schedule=expSchedule, maxTries=10000):
     current = solution
     for t in range(maxTries):
         T = schedule(t)
-        if (t % 10 == 0):
+        if (t % 100 == 0):
             print("Time: " + str(t) + ", Temp: " + str(T))
+#            viz.display(matrix, solution)
         if T == 0:
+            viz.display(matrix, current)
             return current
         nextState = random.choice(getSuccessors(solution))
         deltaE = calcFinalScore(matrix, nextState) - calcFinalScore(matrix, current)
@@ -82,15 +93,11 @@ def simulatedAnnealing(matrix, solution, schedule=expSchedule, maxTries=10000):
         else:
             if random.random() < math.exp(deltaE / T):
                 current = nextState
+
     return current
-
-
-def expSchedule(t):
-    T0 = 1.0
-    alpha = 0.9
-    return T0 * (alpha ** t)
 
 if __name__=='__main__':
     import sampleGraph
     import randomPermutation
-    print(simulatedAnnealing(sampleGraph.matrix, randomPermutation.points))
+    #print(simulatedAnnealing(sampleGraph.matrix, randomPermutation.points))
+    print(basicHillClimb(sampleGraph.matrix, randomPermutation.points))
