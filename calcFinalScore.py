@@ -12,7 +12,7 @@ def calcFinalScore(matrix, solution):
     # feel free to change weights, this is just a rough estimate of how
     # important different scores are
     if(checkOverlappingPoints.checkOverlappingPoints(matrix, solution) == False):
-        return 0.0;
+        return -10000000.0;
     length = len(solution)
     areaScore, diagonal = area.area(solution)
 #    areaScore = 0 * (len(solution) / areaScore)

@@ -1,8 +1,11 @@
+from __future__ import division
 from calcFinalScore import *
 from utils.MatrixPrototypes import *
 import random
 import math
 import viz
+from copy import copy
+
 
 # So, good news is that this very basic attempt is finished.
 # I'd like to run it with more iterations, but there are too many local maxima.
@@ -30,10 +33,10 @@ def getSuccessors(solution, dist=1):
     successors = []
 
     for key in solution.keys():
-        successorOne = solution
-        successorTwo = solution
-        successorThree = solution
-        successorFour = solution
+        successorOne = copy(solution)
+        successorTwo = copy(solution)
+        successorThree = copy(solution)
+        successorFour = copy(solution)
 
         successorOne[key] = (successorOne[key][0] + dist, successorOne[key][1])
         successorTwo[key] = (successorTwo[key][0] - dist, successorTwo[key][1])
@@ -72,7 +75,7 @@ def hillClimbHelper(matrix, solution, score):
 
 def expSchedule(t):
     T0 = 5.0
-    alpha = 0.5
+    alpha = 0.99
     return T0 * (alpha ** t)
 
 def linearSchedule(t):
@@ -80,17 +83,17 @@ def linearSchedule(t):
     alpha = 0.01
     return T0 - (alpha * t)
 
-def simulatedAnnealing(matrix, solution, schedule=expSchedule, maxTries=10000):
+def simulatedAnnealing(matrix, solution, schedule=expSchedule, maxTries=5000):
     current = solution
     for t in range(maxTries):
         T = schedule(t)
         if (t % 100 == 0):
             print("Time: " + str(t) + ", Temp: " + str(T))
 #            viz.display(matrix, solution)
-        if T == 0:
+        if T == 0.0:
             viz.display(matrix, current)
             return current
-        nextState = random.choice(getSuccessors(solution, 5))
+        nextState = random.choice(getSuccessors(solution, math.ceil(T)))
         deltaE = calcFinalScore(matrix, nextState) - calcFinalScore(matrix, current)
         if (t % 10 == 0):
             print("Time: " + str(t) + ", Temp: " + str(T) + ", Score: " + str(calcFinalScore(matrix, current)))
@@ -100,12 +103,12 @@ def simulatedAnnealing(matrix, solution, schedule=expSchedule, maxTries=10000):
         else:
             if random.random() < math.exp(deltaE / T):
                 current = nextState
-
+    viz.display(matrix, current)
     return current
 
 if __name__=='__main__':
     import sampleGraph
     import randomPermutation
-    #result = simulatedAnnealing(sampleGraph.matrix, randomPermutation.points)
-    result = basicHillClimb(sampleGraph.matrix, randomPermutation.points)[0]
+    result = simulatedAnnealing(sampleGraph.matrix, randomPermutation.points)
+    #result = basicHillClimb(sampleGraph.matrix, randomPermutation.points)[0]
     print calcFinalScore(sampleGraph.matrix, result)
