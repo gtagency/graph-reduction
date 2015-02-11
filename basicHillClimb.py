@@ -2,7 +2,7 @@ from calcFinalScore import *
 from utils.MatrixPrototypes import *
 import random
 import math
-import viz
+import utils.viz
 
 # So, good news is that this very basic attempt is finished.
 # I'd like to run it with more iterations, but there are too many local maxima.
