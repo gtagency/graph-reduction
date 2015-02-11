@@ -1,3 +1,4 @@
+from __future__ import division
 from utils import utils
 from utils.MatrixPrototypes import *
 import sampleGraph
@@ -15,4 +16,4 @@ def getEdgeLength(solution, edge):
 
 def getEdgeVariance(solution, matrix, diagonal):
     lengths = [getEdgeLength(solution, edge) for edge in matrix.getEdgeIterator()]
-    return utils.variance(lengths) / utils.variance([0, diagonal])
+    return 1 - utils.variance(lengths) / utils.variance([0, diagonal])
