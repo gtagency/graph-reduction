@@ -1,3 +1,5 @@
+import networkx as nx
+
 class AdjacencyMatrix:
 
     # This is the class constructor
@@ -8,6 +10,13 @@ class AdjacencyMatrix:
         self.matrix = [[None for i in range(vertexCount)] for i in range(vertexCount)]
         self.vertices = []
 
+    def graph(self):
+        G = nx.Graph() 
+        G.add_nodes_from(self.vertices)
+        for u,v in self.getEdgeIterator():
+            G.add_edge(u, v)
+        return G
+        
     # Get vertices
     # Returns:
     #   list of vertices
