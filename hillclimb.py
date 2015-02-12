@@ -2,6 +2,7 @@ from score import *
 from utils.MatrixPrototypes import *
 from random import random, shuffle
 from utils import viz
+from getSuccessors import getSuccessors
 import math
 
 def climbhill(matrix, solution, maxAttempts=2000):
@@ -20,21 +21,3 @@ def climbhill(matrix, solution, maxAttempts=2000):
 
         if initialScore == currentScore: break
     return solution, currentScore, tries
-
-def getSuccessors(solution, dist=1):
-    successors = []
-
-    for key in solution.keys():
-        successorOne = dict(solution)
-        successorTwo = dict(solution)
-        successorThree = dict(solution)
-        successorFour = dict(solution)
-
-        successorOne[key] = ((solution[key][0] + dist), (solution[key][1]))
-        successorTwo[key] = ((solution[key][0] - dist), (solution[key][1]))
-        successorThree[key] = ((solution[key][0]), (solution[key][1] + dist))
-        successorFour[key] = ((solution[key][0]), (solution[key][1] - dist))
-
-        successors.extend([successorOne, successorTwo, successorThree, successorFour])
-
-    return successors

@@ -33,13 +33,15 @@ badSolution = {
 }
 
 import hillclimb
+import simulatedannealing
 
 import sampleGraph
 
 matrix = sampleGraph.matrix
 
 randSolution = getRandom(matrix.vertices)
-solution, score, tries = hillclimb.climbhill(matrix, randSolution)
+# solution, score, tries = hillclimb.climbhill(matrix, randSolution)
+solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
 
 diagnose(matrix, randSolution)
 diagnose(matrix, solution)
