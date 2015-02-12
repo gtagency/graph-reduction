@@ -29,7 +29,7 @@ def simulateanneal(matrix, solution, schedule=linearSchedule, maxTries=10000):
         if T == 0:
             if (t % 100 == 0): print "Time: ", t, ", Temp: ", T, ", bScore: ", bScore, ", cScore: ", cScore, ", jumps: ", jumps, ", deltaE: ", (neighborScore - cScore), ", suc: ", len(successors)
         else:
-            if (t % 100 == 0): print "Time: ", t, ", Temp: ", T, ", bScore: ", bScore, ", cScore: ", cScore, ", jumps: ", jumps, ", deltaE: ", (neighborScore - cScore), ", chance: ", math.exp((neighborScore - cScore) / (0.1 * T)), ", suc: ", len(successors)
+            if (t % 100 == 0): print "Time: ", t, ", Temp: ", T, ", bScore: ", bScore, ", cScore: ", cScore, ", jumps: ", jumps, ", deltaE: ", (neighborScore - cScore), ", chance: ", math.exp((neighborScore - cScore) / (0.0007*T)), ", suc: ", len(successors)
 
         if neighborScore > cScore:
             current = dict(neighbor)
@@ -39,7 +39,8 @@ def simulateanneal(matrix, solution, schedule=linearSchedule, maxTries=10000):
                 bScore = neighborScore
         elif T == 0:
             continue
-        elif random() < math.exp((neighborScore - cScore) / (0.0003 * T)):
+        # elif random() < math.exp((neighborScore - cScore) / (0.0003 * T)):
+        elif random() < math.exp((neighborScore - cScore) / (0.0007*T)):
             jumps += 1
             current = dict(neighbor)
             cScore = neighborScore
