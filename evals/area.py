@@ -15,9 +15,9 @@ def area(coords):
             yMax = y
         if y < yMin:
             yMin = y
-    return (xMax-xMin)*(yMax-yMin), math.sqrt((xMax-xMin)**2 + (yMax-yMin)**2)
 
+    maxArea = (10 * len(coords.values())) ** 2
+    areaScore = 1 - float((xMax-xMin)*(yMax-yMin)) / maxArea
+    diagonal = math.sqrt((xMax-xMin)**2 + (yMax-yMin)**2)
 
-#broken because of packages
-#if __name__=='__main__':
-#    print(area(randomPermutation.points))
+    return areaScore, diagonal
