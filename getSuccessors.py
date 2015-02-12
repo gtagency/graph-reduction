@@ -49,3 +49,21 @@ def getSuccessors(solution, temperature):
             successors.extend(newSuccessors)
 
     return successors
+
+def getSuccessorsHill(solution, dist=1):
+    successors = []
+
+    for key in solution.keys():
+        sOne = dict(solution)
+        sTwo = dict(solution)
+        sThree = dict(solution)
+        sFour = dict(solution)
+
+        sOne[key] = ((solution[key][0] + dist), (solution[key][1]))
+        sTwo[key] = ((solution[key][0] - dist), (solution[key][1]))
+        sThree[key] = ((solution[key][0]), (solution[key][1] + dist))
+        sFour[key] = ((solution[key][0]), (solution[key][1] - dist))
+
+        successors.extend([sOne, sTwo, sThree, sFour])
+
+    return successors

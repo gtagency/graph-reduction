@@ -7,7 +7,7 @@ import math
 
 def climbhill(matrix, solution, maxAttempts=2000):
     for tries in range(maxAttempts):
-        neighbors = getSuccessors(solution, 1)
+        neighbors = getSuccessorsHill(solution, 1)
         shuffle(neighbors)
         initialScore = currentScore = score(matrix, solution)
 
