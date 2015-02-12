@@ -18,7 +18,7 @@ def basicHillClimb(matrix, solution, maxAttempts=2000):
     tries = 0
     peak = False
     while((tries < maxAttempts) and (peak == False)):
-        if(tries % 200 == 0):
+        if(tries % 100 == 0):
             print score
 #            viz.display(matrix, solution)
         newScore = hillClimbHelper(matrix, solution, score)
@@ -30,6 +30,8 @@ def basicHillClimb(matrix, solution, maxAttempts=2000):
     return solution, score, tries
 
 def getSuccessors(solution, dist=1):
+    if dist < 1:
+        dist = 1
     successors = []
 
     for key in solution.keys():
@@ -74,8 +76,8 @@ def hillClimbHelper(matrix, solution, score):
     return calcFinalScore(matrix, solution)
 
 def expSchedule(t):
-    T0 = 5.0
-    alpha = 0.99
+    T0 = 10.0
+    alpha = 0.9995
     return T0 * (alpha ** t)
 
 def linearSchedule(t):
@@ -83,22 +85,19 @@ def linearSchedule(t):
     alpha = 0.01
     return T0 - (alpha * t)
 
-def simulatedAnnealing(matrix, solution, schedule=expSchedule, maxTries=5000):
+def simulatedAnnealing(matrix, solution, schedule=expSchedule, maxTries=10000):
     current = solution
     for t in range(maxTries):
         T = schedule(t)
-        if (t % 100 == 0):
-            print("Time: " + str(t) + ", Temp: " + str(T))
-#            viz.display(matrix, solution)
         if T == 0.0:
             viz.display(matrix, current)
             return current
-        nextState = random.choice(getSuccessors(solution, math.ceil(T)))
+        nextState = random.choice(getSuccessors(solution, math.ceil(T * 10)))
         deltaE = calcFinalScore(matrix, nextState) - calcFinalScore(matrix, current)
         if (t % 10 == 0):
             print("Time: " + str(t) + ", Temp: " + str(T) + ", Score: " + str(calcFinalScore(matrix, current)))
             print deltaE
-        if deltaE > 0:
+        if deltaE > 0.0:
             current = nextState
         else:
             if random.random() < math.exp(deltaE / T):
@@ -110,5 +109,8 @@ if __name__=='__main__':
     import sampleGraph
     import randomPermutation
     result = simulatedAnnealing(sampleGraph.matrix, randomPermutation.points)
+    result2 = basicHillClimb(sampleGraph.matrix, copy(result))[0]
     #result = basicHillClimb(sampleGraph.matrix, randomPermutation.points)[0]
+    print "Scores:"
     print calcFinalScore(sampleGraph.matrix, result)
+    print calcFinalScore(sampleGraph.matrix, result2)
