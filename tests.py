@@ -1,5 +1,5 @@
 from utils.MatrixPrototypes import *
-from score import score
+from score import score, diagnose
 from utils import viz
 from randomPermutation import getRandom
 
@@ -34,8 +34,15 @@ badSolution = {
 
 import hillclimb
 
+import sampleGraph
+
+matrix = sampleGraph.matrix
+
 randSolution = getRandom(matrix.vertices)
-viz.display(matrix, randSolution)
 solution, score, tries = hillclimb.climbhill(matrix, randSolution)
+
+diagnose(matrix, randSolution)
+diagnose(matrix, solution)
+
+viz.display(matrix, randSolution)
 viz.display(matrix, solution)
-print score
