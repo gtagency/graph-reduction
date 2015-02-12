@@ -3,7 +3,7 @@ from score import score, diagnose
 from utils import viz
 from randomPermutation import getRandom
 
-matrix7 = AdjacencyMatrix7(7);
+matrix7 = AdjacencyMatrix(7);
 matrix7.addVertices(["A", "B", "C", "D", "E", "F", "G"])
 matrix7.addEdge("D", "A")
 matrix7.addEdge("D", "F")
