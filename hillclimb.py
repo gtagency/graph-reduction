@@ -2,7 +2,7 @@ from score import *
 from utils.MatrixPrototypes import *
 from random import random, shuffle
 from utils import viz
-from getSuccessors import getSuccessors
+from getSuccessors import getSuccessors, getSuccessorsHill
 import math
 
 def climbhill(matrix, solution, maxAttempts=2000):
