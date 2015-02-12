@@ -2,12 +2,13 @@ import math
 
 def getSuccessors(solution, temperature):
     maxDist = 10*len(solution.keys())
-    dist = (temperature*maxDist)/(10)
+    dist = int(math.ceil((temperature*maxDist)/(10)))
+    if dist < 1: dist = 1
 
     successors = []
 
     for key in solution.keys():
-        for i in range(int(math.ceil(dist))):
+        for i in range(dist):
             sOne = dict(solution)
             sTwo = dict(solution)
             sThree = dict(solution)
