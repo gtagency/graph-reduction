@@ -9,7 +9,7 @@ def area(coords):
         x, y = value
         if x > xMax:
             xMax = x
-        if x <xMin:
+        if x < xMin:
             xMin = x
         if y > yMax:
             yMax = y

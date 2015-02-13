@@ -11,7 +11,7 @@ def climbhill(matrix, solution, maxAttempts=2000):
         shuffle(neighbors)
         initialScore = currentScore = score(matrix, solution)
 
-        if tries % 100 == 0: print "partial score: ", currentScore, tries # DEBUG
+        if tries % 100 == 0: print "partial score: ", currentScore, " tries: ", tries
 
         for step in neighbors:
             nextScore = score(matrix, step)

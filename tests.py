@@ -52,13 +52,53 @@ matrix26.addEdge("G", "H")
 matrix26.addEdge("D", "M")
 matrix26.addEdge("M", "F")
 
+matrix8 = AdjacencyMatrix(8)
+matrix8.addVertices(["A", "B", "C", "D", "E", "F", "G", "H"])
+matrix8.addEdge("A", "B")
+matrix8.addEdge("A", "C")
+matrix8.addEdge("A", "E")
+matrix8.addEdge("B", "F")
+matrix8.addEdge("B", "D")
+matrix8.addEdge("C", "D")
+matrix8.addEdge("C", "G")
+matrix8.addEdge("E", "F")
+matrix8.addEdge("E", "G")
+matrix8.addEdge("H", "F")
+matrix8.addEdge("H", "G")
+matrix8.addEdge("H", "D")
+
+matrix21 = AdjacencyMatrix(21)
+matrix21.addVertices(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U"])
+matrix21.addEdge("A", "B")
+matrix21.addEdge("A", "C")
+matrix21.addEdge("A", "D")
+matrix21.addEdge("A", "E")
+matrix21.addEdge("B", "F")
+matrix21.addEdge("B", "G")
+matrix21.addEdge("B", "H")
+matrix21.addEdge("B", "I")
+matrix21.addEdge("C", "J")
+matrix21.addEdge("C", "K")
+matrix21.addEdge("C", "L")
+matrix21.addEdge("C", "M")
+matrix21.addEdge("D", "N")
+matrix21.addEdge("D", "O")
+matrix21.addEdge("D", "P")
+matrix21.addEdge("D", "Q")
+matrix21.addEdge("E", "R")
+matrix21.addEdge("E", "S")
+matrix21.addEdge("E", "T")
+matrix21.addEdge("E", "U")
+
 import hillclimb
 import simulatedannealing
 import sampleGraph
 
 # PICK YOUR STARTING MATRIX
-# matrix = matrix4
+# matrix = matrix7
 matrix = matrix26
+# matrix = matrix8
+# matrix = matrix21
 
 randSolution = getRandom(matrix.vertices)
 
@@ -67,7 +107,9 @@ randSolution = getRandom(matrix.vertices)
 # solution, score, tries = hillclimb.climbhill(matrix, randSolution)
 solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
 
+print "Random Solution"
 diagnose(matrix, randSolution)
+print "Final Solution"
 diagnose(matrix, solution)
 
 viz.display(matrix, randSolution)
