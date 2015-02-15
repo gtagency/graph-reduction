@@ -3,22 +3,34 @@ from evals import *
 
 # Calculates and returns the score of the solution, given a matrix.
 def score(matrix, solution):
-    areaScore, diagonal = area.area(solution)
-    areaScore = 1.5 * areaScore
-    edgeVarScore = 2 * edgeLengthVariance.getEdgeVariance(solution, matrix, diagonal)
-    edgeDistScore = checkDistributedEdges.checkDistributedEdges(matrix, solution)
-    intersectScore = intersections.score(matrix, solution)
-    edgeLenScore = shrinkEdgesToTen.getEdgeLengthScore(solution, matrix, diagonal, 5)
+    areaM = 0.2
+    edgeVarM = 0.7
+    edgeDistM = 1
+    intersM = 1.7
+    edgeLenM = 0.1
 
-    return (areaScore + edgeVarScore + edgeDistScore + intersectScore + edgeLenScore) / 6.5
+    areaScore, diagonal = area.area(solution)
+    areaScore = areaM * areaScore
+    edgeVarScore = edgeVarM * edgeLengthVariance.getEdgeVariance(solution, matrix, diagonal)
+    edgeDistScore = edgeDistM * checkDistributedEdges.checkDistributedEdges(matrix, solution)
+    intersectScore = intersM * intersections.score(matrix, solution)
+    edgeLenScore = edgeLenM * shrinkEdgesToTen.getEdgeLengthScore(solution, matrix, diagonal, 12)
+
+    return (areaScore + edgeVarScore + edgeDistScore + intersectScore + edgeLenScore) / (areaM + edgeVarM + edgeDistM + intersM + edgeLenM)
 
 def diagnose(matrix, solution):
+    areaM = 0.2
+    edgeVarM = 0.5
+    edgeDistM = 1
+    intersM = 1.7
+    edgeLenM = 0.1
+
     areaScore, diagonal = area.area(solution)
-    areaScore = 1.5 * areaScore
-    edgeVarScore = 2 * edgeLengthVariance.getEdgeVariance(solution, matrix, diagonal)
-    edgeDistScore = checkDistributedEdges.checkDistributedEdges(matrix, solution)
-    intersectScore = intersections.score(matrix, solution)
-    edgeLenScore = shrinkEdgesToTen.getEdgeLengthScore(solution, matrix, diagonal, 5)
+    areaScore = areaM * areaScore
+    edgeVarScore = edgeVarM * edgeLengthVariance.getEdgeVariance(solution, matrix, diagonal)
+    edgeDistScore = edgeDistM * checkDistributedEdges.checkDistributedEdges(matrix, solution)
+    intersectScore = intersM * intersections.score(matrix, solution)
+    edgeLenScore = edgeLenM * shrinkEdgesToTen.getEdgeLengthScore(solution, matrix, diagonal, 12)
 
     print "== DIAGNOSIS =="
     print "areaScore: ", areaScore
@@ -26,5 +38,5 @@ def diagnose(matrix, solution):
     print "edgeDistScore: ", edgeDistScore
     print "intersectScore: ", intersectScore
     print "edgeLenScore: ", edgeLenScore
-    print "FINAL SCORE: ", (areaScore + edgeVarScore + edgeDistScore + intersectScore + edgeLenScore) / 6.5
+    print "FINAL SCORE: ", (areaScore + edgeVarScore + edgeDistScore + intersectScore + edgeLenScore) / (areaM + edgeVarM + edgeDistM + intersM + edgeLenM)
     print "\n"
