@@ -1,7 +1,7 @@
 import math
 from utils.MatrixPrototypes import *
 
-def checkOverlappingPoints(matrix, solution, GAP=12):
+def checkOverlappingPoints(matrix, solution, GAP=10):
     numFailures = 0.0
     vertexList = matrix.vertices
     for i in range(len(vertexList)):

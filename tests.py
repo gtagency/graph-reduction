@@ -11,6 +11,7 @@ matrix7.addEdge("D", "B")
 matrix7.addEdge("B", "C")
 matrix7.addEdge("B", "E")
 matrix7.addEdge("F", "G")
+# matrix7.addEdge("G", "A")
 
 goodSolution = {
     "A": (5, 10),
@@ -69,12 +70,12 @@ for x in range(9):
 # FOR SIMU ANNEALIN, UNCOMMENT FIRST LINE.
 # FOR HILL CLIMBING, UNCOMMENT SECOND LINE.
 # FOR BOTH UNCOMMENT BOTH
-solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
+# solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
 # solution, score, tries = hillclimb.climbhill(matrix, randSolution)
 
 # FOR BOTH COMMENT OUT BOTH ABOVE, UNCOMMENT THESE TWO BELOW
-# solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
-# solution, score, tries = hillclimb.climbhill(matrix, solution)
+solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
+solution, score, tries = hillclimb.climbhill(matrix, solution)
 
 diagnose(matrix, randSolution)
 diagnose(matrix, solution)
