@@ -45,7 +45,7 @@ def checkDistributedEdges(matrix, vertices):
             #calc variance
             totalVariance += utils.variance(angleDist)
 
-    return 1.0 - totalVariance
+    return 1.0 / (totalVariance + 1.0)
 
 #Test statement, need to import randomPermutation, sampleGraph to run
 #

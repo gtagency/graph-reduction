@@ -185,12 +185,12 @@ import sampleGraph
 
 # PICK YOUR STARTING MATRIX
 # matrix = matrix7
-# matrix = matrix26
+matrix = matrix26
 # matrix = matrix8
 # matrix = matrix21
 # matrix = matrix4
 # matrix = matrix34
-matrix = matrixBin
+# matrix = matrixBin
 
 randSolution = getRandom(matrix.vertices)
 for x in range(9):
@@ -201,12 +201,12 @@ for x in range(9):
 # FOR SIMU ANNEALIN, UNCOMMENT FIRST LINE.
 # FOR HILL CLIMBING, UNCOMMENT SECOND LINE.
 # FOR BOTH UNCOMMENT BOTH
-# solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
+solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
 # solution, score, tries = hillclimb.climbhill(matrix, randSolution)
 
 # FOR BOTH COMMENT OUT BOTH ABOVE, UNCOMMENT THESE TWO BELOW
-solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
-solution, score, tries = hillclimb.climbhill(matrix, solution)
+# solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
+# solution, score, tries = hillclimb.climbhill(matrix, solution)
 
 print "Random Solution"
 diagnose(matrix, randSolution)
