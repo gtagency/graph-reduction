@@ -235,13 +235,13 @@ import sampleGraph
 
 # PICK YOUR STARTING MATRIX
 # matrix = matrix7
-# matrix = matrix26
+matrix = matrix26
 # matrix = matrix8
 # matrix = matrix21
 # matrix = matrix4
 # matrix = matrix34
 # matrix = matrixBin
-matrix = matrixStar
+# matrix = matrixStar
 
 randSolution = getRandom(matrix.vertices)
 for x in range(9):

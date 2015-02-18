@@ -37,12 +37,12 @@ def diagnose(matrix, solution):
     overlapScore = overlapM * (0.8 ** checkOverlappingPoints.checkOverlappingPoints(matrix, solution))
 
     print "== DIAGNOSIS =="
-    print "areaScore: ", areaScore
-    print "edgeVarScore: ", edgeVarScore
-    print "edgeDistScore: ", edgeDistScore
-    print "intersectScore: ", intersectScore
-    print "edgeLenScore: ", edgeLenScore
-    print "overlapScore: ", overlapScore
+    print "areaScore: ", areaScore, " / ", areaM
+    print "edgeVarScore: ", edgeVarScore, " / ", edgeVarM
+    print "edgeDistScore: ", edgeDistScore, " / ", edgeDistM
+    print "intersectScore: ", intersectScore, " / ", intersM
+    print "edgeLenScore: ", edgeLenScore, " / ", edgeLenM
+    print "overlapScore: ", overlapScore, " / ", overlapM
 
     print "FINAL SCORE: ", (areaScore + edgeVarScore + edgeDistScore + intersectScore + edgeLenScore + overlapScore) / (areaM + edgeVarM + edgeDistM + intersM + edgeLenM + overlapM)
     print "\n"
