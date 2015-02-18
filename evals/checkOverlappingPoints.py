@@ -1,6 +1,10 @@
 import math
 from utils.MatrixPrototypes import *
 
+
+# checks for two overlapping points, and also checks if any points overlap
+# with an edge
+
 def checkOverlappingPoints(matrix, solution, GAP=10):
     numFailures = 0.0
     vertexList = matrix.vertices
