@@ -2,6 +2,6 @@ from matplotlib.pyplot import show, ion, axis
 import networkx as nx
 
 def display(matrix, points):
-    axis((0, 10*len(points.keys()), 0, 10*len(points.keys())))
+    axis((-5, 10*len(points.keys()) + 5, -5, 10*len(points.keys()) + 5))
     nx.draw(matrix.graph(), points)
     show()
