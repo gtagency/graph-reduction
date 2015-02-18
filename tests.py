@@ -226,7 +226,8 @@ matrixStar.addEdge("N", "P")
 matrixStar.addEdge("P", "R")
 matrixStar.addEdge("R", "B")
 
-
+matrixNoEdge = AdjacencyMatrix(19)
+matrixNoEdge.addVertices(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"])
 
 
 import hillclimb
@@ -242,12 +243,14 @@ import sampleGraph
 # matrix = matrix34
 # matrix = matrixBin
 matrix = matrixStar
+# matrix = matrixNoEdge # Doesn't work. Division by Zero error
 
 randSolution = getRandom(matrix.vertices)
-for x in range(9):
-    newRand = getRandom(matrix.vertices)
-    if score(matrix, newRand) > score(matrix, randSolution):
-        randSolution = newRand
+# is this needed? Isn't simulated annealing making this almost irrelevant?
+# for x in range(9):
+#     newRand = getRandom(matrix.vertices)
+#     if score(matrix, newRand) > score(matrix, randSolution):
+#         randSolution = newRand
 
 # FOR SIMU ANNEALIN, UNCOMMENT FIRST LINE.
 # FOR HILL CLIMBING, UNCOMMENT SECOND LINE.
