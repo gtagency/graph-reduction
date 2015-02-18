@@ -232,7 +232,6 @@ matrixNoEdge.addVertices(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
 
 import hillclimb
 import simulatedannealing
-import sampleGraph
 
 # PICK YOUR STARTING MATRIX
 # matrix = matrix7
