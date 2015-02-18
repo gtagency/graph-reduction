@@ -1,8 +1,6 @@
 from __future__ import division
 from utils import utils
 from utils.MatrixPrototypes import *
-import sampleGraph
-import randomPermutation
 
 def getEdgeLength(solution, edge):
     # edge is a tuple, taken from input.

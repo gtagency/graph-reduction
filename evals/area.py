@@ -2,14 +2,14 @@ import randomPermutation
 import math
 
 def area(coords):
-    xMin, yMin = coords['A']
+    xMin, yMin = coords[coords.keys()[0]]
     xMax, yMax = xMin, yMin
 
     for value in coords.values():
         x, y = value
         if x > xMax:
             xMax = x
-        if x <xMin:
+        if x < xMin:
             xMin = x
         if y > yMax:
             yMax = y
