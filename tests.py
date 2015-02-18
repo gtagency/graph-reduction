@@ -178,6 +178,56 @@ matrixBin.addEdge("6", "13")
 matrixBin.addEdge("7", "14")
 matrixBin.addEdge("7", "15")
 
+matrixStar = AdjacencyMatrix(19)
+matrixStar.addVertices(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"])
+matrixStar.addEdge("A", "B")
+matrixStar.addEdge("A", "C")
+matrixStar.addEdge("A", "D")
+matrixStar.addEdge("A", "E")
+matrixStar.addEdge("A", "F")
+matrixStar.addEdge("A", "G")
+matrixStar.addEdge("A", "H")
+matrixStar.addEdge("A", "I")
+matrixStar.addEdge("A", "J")
+matrixStar.addEdge("A", "K")
+matrixStar.addEdge("A", "L")
+matrixStar.addEdge("A", "M")
+matrixStar.addEdge("A", "N")
+matrixStar.addEdge("A", "O")
+matrixStar.addEdge("A", "P")
+matrixStar.addEdge("A", "Q")
+matrixStar.addEdge("A", "R")
+matrixStar.addEdge("A", "S")
+matrixStar.addEdge("B", "C")
+matrixStar.addEdge("C", "D")
+matrixStar.addEdge("D", "E")
+matrixStar.addEdge("E", "F")
+matrixStar.addEdge("F", "G")
+matrixStar.addEdge("G", "H")
+matrixStar.addEdge("H", "I")
+matrixStar.addEdge("I", "J")
+matrixStar.addEdge("J", "K")
+matrixStar.addEdge("K", "L")
+matrixStar.addEdge("L", "M")
+matrixStar.addEdge("M", "N")
+matrixStar.addEdge("N", "O")
+matrixStar.addEdge("O", "P")
+matrixStar.addEdge("P", "Q")
+matrixStar.addEdge("Q", "R")
+matrixStar.addEdge("R", "S")
+matrixStar.addEdge("S", "B")
+matrixStar.addEdge("B", "D")
+matrixStar.addEdge("D", "F")
+matrixStar.addEdge("F", "H")
+matrixStar.addEdge("H", "J")
+matrixStar.addEdge("J", "L")
+matrixStar.addEdge("L", "N")
+matrixStar.addEdge("N", "P")
+matrixStar.addEdge("P", "R")
+matrixStar.addEdge("R", "B")
+
+
+
 
 import hillclimb
 import simulatedannealing
@@ -185,12 +235,13 @@ import sampleGraph
 
 # PICK YOUR STARTING MATRIX
 # matrix = matrix7
-matrix = matrix26
+# matrix = matrix26
 # matrix = matrix8
 # matrix = matrix21
 # matrix = matrix4
 # matrix = matrix34
 # matrix = matrixBin
+matrix = matrixStar
 
 randSolution = getRandom(matrix.vertices)
 for x in range(9):
