@@ -240,8 +240,8 @@ import simulatedannealing
 # matrix = matrix21
 # matrix = matrix4
 # matrix = matrix34
-matrix = matrixBin
-# matrix = matrixStar
+# matrix = matrixBin
+matrix = matrixStar
 # matrix = matrixNoEdge # Doesn't work. Division by Zero error
 
 

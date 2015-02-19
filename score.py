@@ -2,13 +2,13 @@ from utils.MatrixPrototypes import *
 from evals import *
 
 # Calculates and returns the score of the solution, given a matrix.
-def score(matrix, solution):
+def score(matrix, solution, percentComplete=1.0):
     areaM = 0.2
     edgeVarM = 0.7
     edgeDistM = 1
     intersM = 1.7
     edgeLenM = 0.1
-    overlapM = 0.5
+    overlapM = 0.5 * percentComplete
 
     areaScore, diagonal = area.area(solution)
     areaScore = areaM * areaScore

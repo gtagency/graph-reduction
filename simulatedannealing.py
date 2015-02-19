@@ -69,7 +69,7 @@ def simulateanneal(matrix, solution, schedule=linearSchedule, maxTries=10000):
         neighbor = getNeighbor(current, T)
         # successors = getSuccessors(current, T)
         # neighbor = choice(successors)
-        neighborScore = score(matrix, neighbor)
+        neighborScore = score(matrix, neighbor, t / maxTries)
 
         if T == 0:
             if (t % 100 == 0): print "Time:", t, "\tTemp:", T, "\tbScore:", bScore, "\tcScore:", cScore, "\tjumps:", jumps, "\tdeltaE:", (neighborScore - cScore)
