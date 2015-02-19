@@ -229,6 +229,71 @@ matrixStar.addEdge("R", "B")
 matrixNoEdge = AdjacencyMatrix(19)
 matrixNoEdge.addVertices(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"])
 
+matrixWeb = AdjacencyMatrix(24)
+matrixWeb.addVertices(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"])
+matrixWeb.addEdge("A", "B")
+matrixWeb.addEdge("B", "C")
+matrixWeb.addEdge("C", "D")
+matrixWeb.addEdge("D", "E")
+matrixWeb.addEdge("E", "F")
+matrixWeb.addEdge("F", "G")
+matrixWeb.addEdge("G", "H")
+matrixWeb.addEdge("H", "A")
+matrixWeb.addEdge("I", "J")
+matrixWeb.addEdge("J", "K")
+matrixWeb.addEdge("K", "L")
+matrixWeb.addEdge("L", "M")
+matrixWeb.addEdge("M", "N")
+matrixWeb.addEdge("N", "O")
+matrixWeb.addEdge("O", "P")
+matrixWeb.addEdge("P", "I")
+matrixWeb.addEdge("Q", "R")
+matrixWeb.addEdge("R", "S")
+matrixWeb.addEdge("S", "T")
+matrixWeb.addEdge("T", "U")
+matrixWeb.addEdge("U", "V")
+matrixWeb.addEdge("V", "W")
+matrixWeb.addEdge("W", "X")
+matrixWeb.addEdge("X", "Q")
+matrixWeb.addEdge("A", "I")
+matrixWeb.addEdge("B", "J")
+matrixWeb.addEdge("C", "K")
+matrixWeb.addEdge("D", "L")
+matrixWeb.addEdge("E", "M")
+matrixWeb.addEdge("F", "N")
+matrixWeb.addEdge("G", "O")
+matrixWeb.addEdge("H", "P")
+matrixWeb.addEdge("I", "Q")
+matrixWeb.addEdge("J", "R")
+matrixWeb.addEdge("K", "S")
+matrixWeb.addEdge("L", "T")
+matrixWeb.addEdge("M", "U")
+matrixWeb.addEdge("N", "V")
+matrixWeb.addEdge("O", "W")
+matrixWeb.addEdge("P", "X")
+
+matrix12 = AdjacencyMatrix(12)
+matrix12.addVertices(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"])
+matrix12.addEdge("A", "B")
+matrix12.addEdge("B", "C")
+matrix12.addEdge("C", "D")
+matrix12.addEdge("D", "A")
+matrix12.addEdge("E", "F")
+matrix12.addEdge("F", "G")
+matrix12.addEdge("G", "H")
+matrix12.addEdge("H", "E")
+matrix12.addEdge("I", "J")
+matrix12.addEdge("J", "K")
+matrix12.addEdge("K", "L")
+matrix12.addEdge("L", "I")
+matrix12.addEdge("A", "E")
+matrix12.addEdge("B", "F")
+matrix12.addEdge("C", "G")
+matrix12.addEdge("D", "H")
+matrix12.addEdge("E", "I")
+matrix12.addEdge("F", "J")
+matrix12.addEdge("G", "K")
+matrix12.addEdge("H", "L")
 
 import hillclimb
 import simulatedannealing
@@ -241,7 +306,9 @@ import simulatedannealing
 # matrix = matrix4
 # matrix = matrix34
 # matrix = matrixBin
-matrix = matrixStar
+# matrix = matrixStar
+# matrix = matrixWeb
+matrix = matrix12
 # matrix = matrixNoEdge # Doesn't work. Division by Zero error
 
 
