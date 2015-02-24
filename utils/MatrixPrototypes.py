@@ -9,14 +9,18 @@ class AdjacencyMatrix:
         self.order = vertexCount
         self.matrix = [[None for i in range(vertexCount)] for i in range(vertexCount)]
         self.vertices = []
+        self.numEdges = 0
 
     def graph(self):
-        G = nx.Graph() 
+        G = nx.Graph()
         G.add_nodes_from(self.vertices)
         for u,v in self.getEdgeIterator():
             G.add_edge(u, v)
         return G
-        
+
+    def getNumEdges(self):
+        return self.numEdges
+
     # Get vertices
     # Returns:
     #   list of vertices
@@ -40,6 +44,7 @@ class AdjacencyMatrix:
         j = self.vertices.index(toVertex)
         self.matrix[i][j] = weight
         self.matrix[j][i] = weight
+        self.numEdges += 1
 
     # Gets any edges between the two vertices
     # Arguments:

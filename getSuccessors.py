@@ -59,12 +59,20 @@ def getSuccessorsHill(solution, dist=1):
         sTwo = dict(solution)
         sThree = dict(solution)
         sFour = dict(solution)
+        sFive = dict(solution)
+        sSix = dict(solution)
+        sSeven = dict(solution)
+        sEight = dict(solution)
 
         sOne[key] = ((solution[key][0] + dist), (solution[key][1]))
         sTwo[key] = ((solution[key][0] - dist), (solution[key][1]))
         sThree[key] = ((solution[key][0]), (solution[key][1] + dist))
         sFour[key] = ((solution[key][0]), (solution[key][1] - dist))
+        sFive[key] = ((solution[key][0] + dist), (solution[key][1] + dist))
+        sSix[key] = ((solution[key][0] - dist), (solution[key][1] + dist))
+        sSeven[key] = ((solution[key][0] - dist), (solution[key][1] - dist))
+        sEight[key] = ((solution[key][0] + dist), (solution[key][1] - dist))
 
-        successors.extend([sOne, sTwo, sThree, sFour])
+        successors.extend([sOne, sTwo, sThree, sFour, sFive, sSix, sSeven, sEight])
 
     return successors

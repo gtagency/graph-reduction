@@ -3,14 +3,14 @@ from score import *
 from random import random, choice, randrange
 import math
 
-def expSchedule(t):
+def expSchedule(t, maxTries):
     T0 = 5.0
     alpha = 0.9995
     return T0 * (alpha ** t)
 
-def linearSchedule(t):
+def linearSchedule(t, maxTries):
     T0 = 5.0
-    alpha = 0.0005
+    alpha = T0 / maxTries
     return T0 - (alpha * t)
 
 def getNeighbor(solution, T):
@@ -56,20 +56,26 @@ def getNeighbor(solution, T):
     return neighbor
 
 
-def simulateanneal(matrix, solution, schedule=linearSchedule, maxTries=10000):
+def simulateanneal(matrix, solution, schedule=linearSchedule, maxTries=0):
     current = dict(solution)
     best = dict(solution)
-    cScore = score(matrix, solution)
-    bScore = score(matrix, solution)
+    if maxTries == 0:
+        maxTries = 1000 * len(best)
+        if maxTries > 20000:
+            maxTries = 20000
+        if maxTries < 5000:
+            maxTries = 5000
+    cScore = score(matrix, solution, 0)
+    bScore = score(matrix, solution, 0)
     jumps = 0
 
     # make maxTries, T's schedule, and everything else really dependent on the NUMBER OF VERTICES.
     for t in range(maxTries):
-        T = schedule(t)
+        T = schedule(t, maxTries)
         neighbor = getNeighbor(current, T)
         # successors = getSuccessors(current, T)
         # neighbor = choice(successors)
-        neighborScore = score(matrix, neighbor, t / maxTries)
+        neighborScore = score(matrix, neighbor, (t *4) / maxTries)
 
         if T == 0:
             if (t % 100 == 0): print "Time:", t, "\tTemp:", T, "\tbScore:", bScore, "\tcScore:", cScore, "\tjumps:", jumps, "\tdeltaE:", (neighborScore - cScore)

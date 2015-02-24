@@ -3,12 +3,15 @@ from evals import *
 
 # Calculates and returns the score of the solution, given a matrix.
 def score(matrix, solution, percentComplete=1.0):
+    numVertices = len(matrix.vertices)
+    if percentComplete > 1.0:
+        percentComplete = 1.0
     areaM = 0.2
     edgeVarM = 0.7
     edgeDistM = 1
     intersM = 1.7
-    edgeLenM = 0.1
-    overlapM = 0.5 * percentComplete
+    edgeLenM = 0.3
+    overlapM = 2 * percentComplete
 
     areaScore, diagonal = area.area(solution)
     areaScore = areaM * areaScore
@@ -16,17 +19,17 @@ def score(matrix, solution, percentComplete=1.0):
     edgeDistScore = edgeDistM * checkDistributedEdges.checkDistributedEdges(matrix, solution)
     intersectScore = intersM * intersections.score(matrix, solution)
     edgeLenScore = edgeLenM * shrinkEdgesToTen.getEdgeLengthScore(solution, matrix, diagonal, 12)
-    overlapScore = overlapM * (0.8 ** checkOverlappingPoints.checkOverlappingPoints(matrix, solution))
+    overlapScore = overlapM * checkOverlappingPoints.checkOverlappingPoints(matrix, solution, numVertices)
 
     return (areaScore + edgeVarScore + edgeDistScore + intersectScore + edgeLenScore + overlapScore) / (areaM + edgeVarM + edgeDistM + intersM + edgeLenM + overlapM)
 
 def diagnose(matrix, solution):
     areaM = 0.2
-    edgeVarM = 0.5
+    edgeVarM = 0.7
     edgeDistM = 1
     intersM = 1.7
-    edgeLenM = 0.1
-    overlapM = 0.5
+    edgeLenM = 0.3
+    overlapM = 2
 
     areaScore, diagonal = area.area(solution)
     areaScore = areaM * areaScore
@@ -34,7 +37,7 @@ def diagnose(matrix, solution):
     edgeDistScore = edgeDistM * checkDistributedEdges.checkDistributedEdges(matrix, solution)
     intersectScore = intersM * intersections.score(matrix, solution)
     edgeLenScore = edgeLenM * shrinkEdgesToTen.getEdgeLengthScore(solution, matrix, diagonal, 12)
-    overlapScore = overlapM * (0.8 ** checkOverlappingPoints.checkOverlappingPoints(matrix, solution))
+    overlapScore = overlapM * checkOverlappingPoints.checkOverlappingPoints(matrix, solution)
 
     print "== DIAGNOSIS =="
     print "areaScore: ", areaScore, " / ", areaM

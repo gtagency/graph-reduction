@@ -15,7 +15,11 @@ def checkOverlappingPoints(matrix, solution, GAP=10):
                 x = solution[v1][0] - solution[v2][0]
                 y = solution[v1][1] - solution[v2][1]
                 if(math.sqrt(x**2 + y**2) < GAP):
-                    numFailures += ((GAP / (math.sqrt(x**2 + y**2) + 0.001)) - 0.999)
+                    addScore = GAP / (math.sqrt(x**2 + y**2) + 0.001)
+                    addScore = 1 - (1 / addScore)
+                    if addScore < 0:
+                        addScore = 0
+                    numFailures += 10 * addScore
 
 
     edges = [vertTuple for vertTuple in matrix.getEdgeIterator()]
@@ -24,9 +28,14 @@ def checkOverlappingPoints(matrix, solution, GAP=10):
             if (pt != edge[0] and pt != edge[1]):
                 dist = pnt2line(solution[pt], solution[edge[0]], solution[edge[1]])
                 if (dist != None and dist < GAP):
-                    numFailures += ((GAP / (dist + 0.001)) - 0.999)
-
-    return numFailures;
+                    addScore = GAP / (dist + 0.001)
+                    addScore = 1 - (1 / addScore)
+                    if addScore < 0:
+                        addScore = 0
+                    numFailures += 10 * addScore
+    rawScore = 1 - ((numFailures * 2) / (10 * nCr(len(solution) + matrix.getNumEdges(), 2)));
+    betterScore = rawScore ** 5
+    return betterScore
 
 def pnt2line(pnt, start, end):
     line_vec = vector(start, end)
@@ -49,6 +58,10 @@ def pnt2line(pnt, start, end):
     dist = distance(nearest, pnt_vec)
     return dist
 
+
+def nCr(n,r):
+    f = math.factorial
+    return f(n) / f(r) / f(n-r)
 
 # Vector fns needed for pointEdgeOverlap
 

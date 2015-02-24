@@ -314,25 +314,37 @@ matrix = matrix12
 
 randSolution = getRandom(matrix.vertices)
 # is this needed? Isn't simulated annealing making this almost irrelevant?
-# for x in range(9):
-#     newRand = getRandom(matrix.vertices)
-#     if score(matrix, newRand) > score(matrix, randSolution):
-#         randSolution = newRand
+# I think this is useful to avoid situations where the code starts at an
+# unfavorable location, and then spends too long trying to get to a good
+# position and doesn't have time to find a high-quality solution.
+for x in range(4):
+    newRand = getRandom(matrix.vertices)
+    if score(matrix, newRand) > score(matrix, randSolution):
+        randSolution = newRand
 
-# FOR SIMU ANNEALIN, UNCOMMENT FIRST LINE.
-# FOR HILL CLIMBING, UNCOMMENT SECOND LINE.
-# FOR BOTH UNCOMMENT BOTH
+# FOR SIMU ANNEALIN, UNCOMMENT FIRST LINE AND COMMENT OUT LINES BELOW MARKED <-- BOTH ONLY -->
+# FOR HILL CLIMBING, UNCOMMENT SECOND LINE AND COMMENT OUT LINES BELOW MARKED <-- BOTH ONLY -->
+# FOR BOTH UNCOMMENT BOTH AND UNCOMMENT LINES BELOW MARKED <-- BOTH ONLY -->
 solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
 # solution, score, tries = hillclimb.climbhill(matrix, randSolution)
 
 # FOR BOTH COMMENT OUT BOTH ABOVE, UNCOMMENT THESE TWO BELOW
-# solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
-# solution, score, tries = hillclimb.climbhill(matrix, solution)
+# <-- BOTH ONLY
+# annealSolution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
+# solution, score, tries = hillclimb.climbhill(matrix, annealSolution)
+# -->
 
 print "Random Solution"
 diagnose(matrix, randSolution)
+# <-- BOTH ONLY
+# print "Anneal Solution"
+# diagnose(matrix, annealSolution)
+# -->
 print "Final Solution"
 diagnose(matrix, solution)
 
 viz.display(matrix, randSolution)
+# <-- BOTH ONLY
+# viz.display(matrix, annealSolution)
+# -->
 viz.display(matrix, solution)
