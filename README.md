@@ -4,14 +4,12 @@ Make your graphs pretty and user-friendly using simulated annealing and hill cli
 
 How It Works
 ------------
-//how simu and hill climbing works.
+Hill Climbing is an iterative algorithm that starts with an arbitrary solution to a problem, then attempts to find a better solution by incrementally changing a single element of the solution. If the change produces a better solution, an incremental change is made to the new solution, repeating until no further improvements can be found.
+
+Simulated Annealing is a probabilistic metaheuristic algorithm that attempts to find a good (or global optimal) solution. It also starts with an arbitraty solution, then uses probability to determine how, and how much it should change that solution. It takes more risks than Hill Climbing, but it also usually produces better results.
 
 ### Quick Demo
-To see the algorithms in action, simply run:
-```
-$ python tests.py
-```
-The algorithm will output the various states the graph goes through and then display two graphs: a randomly generated one (used as the initial state) and the final generated one.
+To see the algorithms in action, simply run `$ python tests.py`. The algorithm will output the various states the graph goes through and then display two graphs: a randomly generated one (used as the initial state) and the final generated one.
 
 You can also modify which demo you are visualizing by going to the bottom of the `tests.py` file and uncommenting different matrices or the algorithm being used (hill climbing or simulated annealing). Just follow the commented instructions.
 
@@ -40,6 +38,6 @@ Different graphs will require different weights for the heuristics in the score 
 How To Contribute To It
 -----------------------
 ### How To Add Heuristics
-You can add heuristics to the score function. Just create a python file that takes in an AdjacencyMatrix and/or a proposed solution and outputs a normalized value from 0 to 1. Add this file to `/evals` and add its name to `/evals/__init__.py`. Now you can modify the score function to take it into account. Remember to normalize the final score by adding the maxValue to the bottom of the division in the return statement. The maxValue of your heuristi should be its weight, if the score your file outputs is properly normalized.
+You can add heuristics to the score function. Just create a python file that takes in an AdjacencyMatrix and/or a proposed solution and outputs a normalized value from 0 to 1 (1 being best). Add this file to `/evals` and add its name to `/evals/__init__.py`. Now you can modify the score function to take it into account. Remember to normalize the final score by adding the maxValue to the bottom of the division in the return statement. The maxValue of your heuristi should be its weight, if the score your file outputs is properly normalized.
 
 
