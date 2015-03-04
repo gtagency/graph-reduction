@@ -298,7 +298,9 @@ matrix12.addEdge("H", "L")
 import hillclimb
 import simulatedannealing
 
-# PICK YOUR STARTING MATRIX
+# # # DEMO INSTRUCTIONS # # #
+
+# STEP ONE - PICK YOUR STARTING MATRIX (uncomment one)
 # matrix = matrix7
 # matrix = matrix26
 # matrix = matrix8
@@ -311,40 +313,25 @@ import simulatedannealing
 matrix = matrix12
 # matrix = matrixNoEdge # Doesn't work. Division by Zero error
 
-
 randSolution = getRandom(matrix.vertices)
-# is this needed? Isn't simulated annealing making this almost irrelevant?
-# I think this is useful to avoid situations where the code starts at an
-# unfavorable location, and then spends too long trying to get to a good
-# position and doesn't have time to find a high-quality solution.
-for x in range(4):
-    newRand = getRandom(matrix.vertices)
-    if score(matrix, newRand) > score(matrix, randSolution):
-        randSolution = newRand
 
-# FOR SIMU ANNEALIN, UNCOMMENT FIRST LINE AND COMMENT OUT LINES BELOW MARKED <-- BOTH ONLY -->
-# FOR HILL CLIMBING, UNCOMMENT SECOND LINE AND COMMENT OUT LINES BELOW MARKED <-- BOTH ONLY -->
-# FOR BOTH UNCOMMENT BOTH AND UNCOMMENT LINES BELOW MARKED <-- BOTH ONLY -->
+# STEP TWO - PICK YOUR METHOD (pick one and uncomment it)
+#   METHOD ONE - SIMULATED ANNEALING
 solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
+
+#   METHOD TWO - HILL CLIMBING
 # solution, score, tries = hillclimb.climbhill(matrix, randSolution)
 
-# FOR BOTH COMMENT OUT BOTH ABOVE, UNCOMMENT THESE TWO BELOW
-# <-- BOTH ONLY
+#   METHOD THREE - SIMULATED ANNEALING + HILL CLIMBING (uncomment both lines)
 # annealSolution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
 # solution, score, tries = hillclimb.climbhill(matrix, annealSolution)
-# -->
+
 
 print "Random Solution"
 diagnose(matrix, randSolution)
-# <-- BOTH ONLY
-# print "Anneal Solution"
-# diagnose(matrix, annealSolution)
-# -->
+
 print "Final Solution"
 diagnose(matrix, solution)
 
 viz.display(matrix, randSolution)
-# <-- BOTH ONLY
-# viz.display(matrix, annealSolution)
-# -->
 viz.display(matrix, solution)
