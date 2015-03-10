@@ -56,7 +56,7 @@ def getNeighbor(solution, T):
     return neighbor
 
 
-def simulateanneal(matrix, solution, schedule=linearSchedule, maxTries=0):
+def simulateanneal(matrix, solution, printFlag=True, schedule=linearSchedule, maxTries=0):
     current = dict(solution)
     best = dict(solution)
     if maxTries == 0:
@@ -77,10 +77,11 @@ def simulateanneal(matrix, solution, schedule=linearSchedule, maxTries=0):
         # neighbor = choice(successors)
         neighborScore = score(matrix, neighbor, (t *4) / maxTries)
 
-        if T == 0:
-            if (t % 100 == 0): print "Time:", t, "\tTemp:", T, "\tbScore:", bScore, "\tcScore:", cScore, "\tjumps:", jumps, "\tdeltaE:", (neighborScore - cScore)
-        else:
-            if (t % 100 == 0): print "Time:", t, "\tTemp:", T, "\tbScore:", bScore, "\tcScore:", cScore, "\tjumps:", jumps, "\tdeltaE:", (neighborScore - cScore), "\tchance:", math.exp((neighborScore - cScore) / (0.005*T/5))
+        if (printFlag):
+            if T == 0:
+                if (t % 100 == 0): print "Time:", t, "\tTemp:", T, "\tbScore:", bScore, "\tcScore:", cScore, "\tjumps:", jumps, "\tdeltaE:", (neighborScore - cScore)
+            else:
+                if (t % 100 == 0): print "Time:", t, "\tTemp:", T, "\tbScore:", bScore, "\tcScore:", cScore, "\tjumps:", jumps, "\tdeltaE:", (neighborScore - cScore), "\tchance:", math.exp((neighborScore - cScore) / (0.005*T/5))
 
         if neighborScore > cScore:
             current = dict(neighbor)

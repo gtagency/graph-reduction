@@ -5,13 +5,13 @@ from utils import viz
 from getSuccessors import getSuccessors, getSuccessorsHill
 import math
 
-def climbhill(matrix, solution, maxAttempts=2000):
+def climbhill(matrix, solution, printFlag=True, maxAttempts=2000):
     for tries in range(maxAttempts):
         neighbors = getSuccessorsHill(solution, 1)
         shuffle(neighbors)
         initialScore = currentScore = score(matrix, solution)
-
-        if tries % 1 == 0: print "partial score: ", currentScore, " tries: ", tries
+        if printFlag:
+            if tries % 1 == 0: print "partial score: ", currentScore, " tries: ", tries
 
         for step in neighbors:
             nextScore = score(matrix, step)
