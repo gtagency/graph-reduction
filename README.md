@@ -21,15 +21,34 @@ How To Use It
 Before running the algorithms, you will need a representation of the graph. Thankfully, we provide you with an easy to use one.
 ```
 from utils.MatrixPrototypes import AdjacencyMatrix, MatrixIterator, EdgeIterator
-```
-Now you instantiate an AdjacencyMatrix and add vertices and edges to it.
-```
+
 matrix = AdjacencyMatrix(numberOfVertices)
 matrix.addVertices(["Name", "Of", "Each", "Vertex"])
 matrix.addEdges("Name", "Of") # now edges 'Name' and 'Of' are connected.
 ```
 
-//TODO: how to use the thing, like make your own matrix and how to run the hill climbing and simu annealing algo. How to display the final result and visualize it. Depends a lot on rob's work right now.
+To run the algorithm, run one of the lines below. It will return a dictionary with the optimal positions of each vertex.
+```
+from hillclimb import climbhill
+from simulatedannealing import simulateanneal
+
+finalSolution, finalScore, numTries = climbhill(matrix, initialSolution)
+# or...
+finalSolution, finalScore = simulateanneal(matrix, initialSolution)
+```
+If you don't have a prefeered initialSolution, you can get a randomized one by running:
+```
+from randomPermutation import getRandom
+
+initialSolution = getRandom(matrix.vertices)
+```
+
+Finally, you can visualize any solution by running:
+```
+from utils import viz
+
+viz.display(matrix, solution)
+```
 
 How To Tweak It
 ---------------
