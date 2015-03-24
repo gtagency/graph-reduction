@@ -309,8 +309,8 @@ import simulatedannealing
 # matrix = matrix34
 # matrix = matrixBin
 # matrix = matrixStar
-# matrix = matrixWeb
-matrix = matrix12
+matrix = matrixWeb
+# matrix = matrix12
 # matrix = matrixNoEdge # Doesn't work. Division by Zero error
 
 randSolution = getRandom(matrix.vertices)

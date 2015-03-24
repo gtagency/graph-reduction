@@ -40,8 +40,46 @@ def resolveMatrix(matrix):
 
 if __name__=='__main__':
     from utils import viz
+    from score import diagnose
     if (len(sys.argv) < 2):
-        print "Need a matrix"
+        print("Example: ")
+        matrix = AdjacencyMatrix(12)
+        matrix.addVertices(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"])
+        matrix.addEdge("A", "B")
+        matrix.addEdge("B", "C")
+        matrix.addEdge("C", "D")
+        matrix.addEdge("D", "A")
+        matrix.addEdge("E", "F")
+        matrix.addEdge("F", "G")
+        matrix.addEdge("G", "H")
+        matrix.addEdge("H", "E")
+        matrix.addEdge("I", "J")
+        matrix.addEdge("J", "K")
+        matrix.addEdge("K", "L")
+        matrix.addEdge("L", "I")
+        matrix.addEdge("A", "E")
+        matrix.addEdge("B", "F")
+        matrix.addEdge("C", "G")
+        matrix.addEdge("D", "H")
+        matrix.addEdge("E", "I")
+        matrix.addEdge("F", "J")
+        matrix.addEdge("G", "K")
+        matrix.addEdge("H", "L")
+        randSolution = getRandom(matrix.vertices)
+        solution, fScore = simulatedannealing.simulateanneal(matrix, randSolution)
+
+        print "Random Solution"
+        diagnose(matrix, randSolution)
+
+        print "Final Solution"
+        diagnose(matrix, solution)
+
+        try:
+            import networkx
+            import matplotlib
+            viz.display(matrix, solution)
+        except ImportError:
+            print("Need networkx and matplotlib to display graph.")
     else:
         matrix = sys.argv[1]
         newMatrix = resolveMatrix(matrix)
@@ -49,5 +87,10 @@ if __name__=='__main__':
         startSolution = True
         printFlag = False
         solution = graphReduction(newMatrix)
-        viz.display(matrix, solution)
+        try:
+            import networkx
+            import matplotlib
+            viz.display(matrix, solution)
+        except ImportError:
+            print("Need networkx and matplotlib to display graph.")
     #for arg in sys.argv:
