@@ -2,24 +2,17 @@
 
 Make your graphs pretty and user-friendly using simulated annealing and hill climbing. Just input the vertices and the edges which connect them, and PrettyGraphs will output the position of the vertices such that the graph is visually pleasant.
 
-Dependencies: [networkx](https://networkx.github.io/), [matplotlib](http://matplotlib.org/)
-
-How It Works
-------------
-Hill Climbing is an iterative algorithm that starts with an arbitrary solution to a problem, then attempts to find a better solution by incrementally changing a single element of the solution. If the change produces a better solution, an incremental change is made to the new solution, repeating until no further improvements can be found.
-
-Simulated Annealing is a probabilistic metaheuristic algorithm that attempts to find a good (or global optimal) solution. It also starts with an arbitraty solution, then uses probability to determine how, and how much it should change that solution. It takes more risks than Hill Climbing, but it also usually produces better results.
+![](scrnsht.png)
 
 ### Quick Demo
 To see the algorithms in action, simply run `$ python tests.py`. The algorithm will output the various states the graph goes through and then display two graphs: a randomly generated one (used as the initial state) and the final generated one.
 
 You can also modify which demo you are visualizing by going to the bottom of the `tests.py` file and uncommenting different matrices or the algorithm being used (hill climbing or simulated annealing). Just follow the commented instructions.
 
-### Examples
-![](scrnsht.png)
-
 How To Use It
 -------------
+(Dependencies: [networkx](https://networkx.github.io/), [matplotlib](http://matplotlib.org/))
+
 Before running the algorithms, you will need a representation of the graph. Thankfully, we provide you with an easy to use one.
 ```
 from utils.MatrixPrototypes import AdjacencyMatrix, MatrixIterator, EdgeIterator
@@ -51,6 +44,12 @@ from utils import viz
 
 viz.display(matrix, solution)
 ```
+
+How It Works
+------------
+Hill Climbing is an iterative algorithm that starts with an arbitrary solution to a problem, then attempts to find a better solution by incrementally changing a single element of the solution. If the change produces a better solution, an incremental change is made to the new solution, repeating until no further improvements can be found.
+
+Simulated Annealing is a probabilistic metaheuristic algorithm that attempts to find a good (or global optimal) solution. It also starts with an arbitraty solution, then uses probability to determine how, and how much it should change that solution. It takes more risks than Hill Climbing, but it also usually produces better results.
 
 How To Tweak It
 ---------------
