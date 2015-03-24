@@ -2,6 +2,8 @@
 
 Make your graphs pretty and user-friendly using simulated annealing and hill climbing. Just input the vertices and the edges which connect them, and PrettyGraphs will output the position of the vertices such that the graph is visually pleasant.
 
+Dependencies: [networkx](https://networkx.github.io/), [matplotlib](http://matplotlib.org/)
+
 How It Works
 ------------
 Hill Climbing is an iterative algorithm that starts with an arbitrary solution to a problem, then attempts to find a better solution by incrementally changing a single element of the solution. If the change produces a better solution, an incremental change is made to the new solution, repeating until no further improvements can be found.
