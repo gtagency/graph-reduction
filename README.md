@@ -14,7 +14,7 @@ How To Use It
 (Dependencies: [networkx](https://networkx.github.io/), [matplotlib](http://matplotlib.org/))
 
 Before running the algorithms, you will need a representation of the graph. Thankfully, we provide you with an easy to use one.
-```
+```python
 from utils.MatrixPrototypes import AdjacencyMatrix, MatrixIterator, EdgeIterator
 
 matrix = AdjacencyMatrix(numberOfVertices)
@@ -23,7 +23,7 @@ matrix.addEdges("Name", "Of") # now edges 'Name' and 'Of' are connected.
 ```
 
 To run the algorithm, run one of the lines below. It will return a dictionary with the optimal positions of each vertex.
-```
+```python
 from hillclimb import climbhill
 from simulatedannealing import simulateanneal
 
@@ -32,14 +32,14 @@ finalSolution, finalScore, numTries = climbhill(matrix, initialSolution)
 finalSolution, finalScore = simulateanneal(matrix, initialSolution)
 ```
 If you don't have a prefeered initialSolution, you can get a randomized one by running:
-```
+```python
 from randomPermutation import getRandom
 
 initialSolution = getRandom(matrix.vertices)
 ```
 
 Finally, you can visualize any solution by running:
-```
+```python
 from utils import viz
 
 viz.display(matrix, solution)
